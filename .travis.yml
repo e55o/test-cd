@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- node
+cache:
+  directories:
+  - node_modules
+before_deploy:
+- npm install now --no-save
+- now rm node-cd --token $NOW_TOKEN --yes || true
+deploy:
+- provider: script
+  script: now --public --token $NOW_TOKEN
+  skip_cleanup: true
+  on:
+    master: true
+env:
+  global:
+    secure: d0v9ukxXJAWClF0++A+QBO/nI2DqQz4qssBRlVW/iPLzWwN5F3vQnlqrqVb3OCqYY10fxJPdXRqFFXEOv9sPKWH4Me8tGfNphCklkZMYFa2iPJzfFskSM+NkLVm0OIujAZR+o44P3013jty6opkCTNKZYXY+g62xDn9ggPITJdq0Nk4Rw3PFdVGnAua5U2uNKJUZuCYzeoEUAe0QPs8yJvz5kmxaHSExr4OKmwXOoMVkPXcaZGsziggf3mPLn0IdStWOxgY6a6VJ9GkLtRAE/EYq+s28ifGbjk1VowyI9IkrIPYWQ58u9fsahl8UATIudegRr82YiptqMQs0GFHxNr3xG8cZMzKPROG0eQ03GSvpVOyWY+57MgEOxy4a5BElNcRokXgwVydW126+xK5D27mZ1WF65Yl672DcH1+44rXGp4kIBt19rhXrH393R/kzaXTjvPmdWUmOQpovATtVBbpxKQIrrllcdUj00zrQDdZaFCk2qjOqw7v9TdR20wO+PAhZvL/4gDz24e38dLS7QbWAexRyVSe8db0QN1YjVVtp5JSK6K5250RQvGxC11PVWhR99K/R8gYdspw5I1VkQMFYvv6twOWQ+Frhj5L6dzEMRz/ZKPUWvGykKZor36t4Q/cr6O27Zg1ZY/igy/+lbwwFTrFeUfWh//2m4smq8K0=
